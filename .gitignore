@@ -1,0 +1,8 @@
+scala/.bsp/
+scala/.metals/
+scala/src/.scala-build/
+scala/.scala-build/
+.bsp/
+.metals/
+.scala-build/
+.direnv/
