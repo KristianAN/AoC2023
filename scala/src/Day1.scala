@@ -28,3 +28,19 @@ def solveTwo(input: List[String]): Int =
       val d = extract(l.toList)
       s"${d.head}${d.last}".toInt
     .sum
+
+def solveTwoRegexp(input: List[String]): Int =
+  import scala.util.matching.Regex
+  val nums = List("one", "two", "three", "four", "five", "six", "seven", "eight", "nine")
+  val mapNums = nums.zipWithIndex.map((k, v) => (k, (v + 1).toString)).toMap
+  def regex(nums: String) = s"\\d|${nums}".r
+  def parse(s: String, reverse: Boolean = false) =
+    if s.toIntOption.isDefined then s
+    else if !reverse then mapNums(s)
+    else mapNums(s.reverse)
+  input
+    .map: l =>
+      val first = parse(regex(nums.mkString("|")).findFirstIn(l).get)
+      val second = parse(regex(nums.mkString("|").reverse).findFirstIn(l.reverse).get, true)
+      s"$first$second".toInt
+    .sum

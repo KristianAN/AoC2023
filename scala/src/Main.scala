@@ -8,7 +8,7 @@ object MainApp extends IOApp.Simple:
     for
       data <- getNonEmptyLines[IO]("./resources/day1.txt")
       _ <- IO.println(s"Day one one: ${dayOne.solveOne(data)}")
-      _ <- IO.println(s"Day one two: ${dayOne.solveTwo(data)}")
+      _ <- IO.println(s"Day one two: ${dayOne.solveTwoRegexp(data)}")
     yield ()
 
   override def run: IO[Unit] =
