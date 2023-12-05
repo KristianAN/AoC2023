@@ -20,7 +20,17 @@
         };
         jdk = pkgs.graalvm-ce;
 
+        buildRelease = pkgs.writeShellScriptBin "build-release" ''
+          scala-cli --power package . --native -o aoc -f --native-mode release-full
+        '';
+
         jvmInputs = with pkgs; [
+          buildRelease
+          stdenv
+          boehmgc
+          libunwind
+          clang
+          zlib
           jdk
           scalafmt
           scala-cli
@@ -38,6 +48,8 @@
 
       in
       {
+
+        LLVM_BIN = pkgs.clang + "/bin";
         devShells.default = pkgs.mkShell {
           name = "aoc-dev-shell";
           buildInputs = jvmInputs;
