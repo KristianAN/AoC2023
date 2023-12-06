@@ -21,6 +21,7 @@ object MainApp extends IOApp.Simple:
       _ <- IO.println(s"Day four one: ${dayFour.solveOne(day4)}")
       _ <- IO.println(s"Day four one: ${dayFour.solveTwo(day4)}")
       _ <- IO.println(s"Day five one: ${dayFive.solveOne(day5)}")
+      _ <- IO.println(s"Day six: ${daySix.solveOneTwo}")
       // _ <- IO.println(s"Day five two: ${dayFive.solveTwo(day5)}")
       _ <- IO.println(s"${(System.nanoTime() - start) / 1000000} ms")
     yield ()
