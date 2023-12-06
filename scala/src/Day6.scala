@@ -6,12 +6,5 @@ def solveOneTwo =
     val dist = speed * (lim - speed)
     dist
   case class Race(time: Long, record: Long)
-
-  val races = List(
-    Race(49877895L, 356137815021882L)
-  )
-
-  races
-    .map: r =>
-      (0L to r.time).map(i => distance(i, r.time)).filter(_ > r.record).size
-    .product
+  val r = Race(49877895L, 356137815021882L)
+  (0L to r.time).count(i => i * (r.time - i) > r.record)
